@@ -21,23 +21,29 @@
 function findSearchTermInBooks(searchTerm, scannedTextObj) {
     /** You will need to implement your search and 
      * return the appropriate object here. */
-    var result = {
-        "SearchTerm": searchTerm,
-        "Results": []
-    };
-    for (let i=0; i<scannedTextObj.length;i++)
-    {
-        for (let j=0; j<scannedTextObj[0].Content.length;j++)
+    if (scannedTextObj==[]){
+
+    }
+    else{
+
+        var result = {
+            "SearchTerm": searchTerm,
+            "Results": []
+        };
+        for (let i=0; i<scannedTextObj.length;i++)
         {
-            if(scannedTextObj[i].Content[j].Text.includes(searchTerm))
+            for (let j=0; j<scannedTextObj[0].Content.length;j++)
             {
-                result.Results= result.Results.concat(
-                    {
-                    "ISBN":scannedTextObj[i].ISBN,
-                    "Page":scannedTextObj[i].Content[j].Page,
-                    "Line":scannedTextObj[i].Content[j].Line
-                    }
-                )
+                if(scannedTextObj[i].Content[j].Text.includes(searchTerm))
+                {
+                    result.Results= result.Results.concat(
+                        {
+                        "ISBN":scannedTextObj[i].ISBN,
+                        "Page":scannedTextObj[i].Content[j].Page,
+                        "Line":scannedTextObj[i].Content[j].Line
+                        }
+                    )
+                }
             }
         }
     }
