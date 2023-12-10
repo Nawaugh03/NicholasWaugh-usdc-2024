@@ -21,15 +21,19 @@
 function findSearchTermInBooks(searchTerm, scannedTextObj) {
     /** You will need to implement your search and 
      * return the appropriate object here. */
-    if (scannedTextObj==[]){
-
+    var result = {
+        "SearchTerm": searchTerm,
+        "Results": []
+    };
+    if (scannedTextObj==[] || searchTerm==""){
+        result.Results=result.Results.concat(
+            {
+                "N/A":"N/A"
+            }
+        )
     }
     else{
 
-        var result = {
-            "SearchTerm": searchTerm,
-            "Results": []
-        };
         for (let i=0; i<scannedTextObj.length;i++)
         {
             for (let j=0; j<scannedTextObj[0].Content.length;j++)
@@ -69,7 +73,7 @@ const twentyLeaguesIn = [
             {
                 "Page": 31,
                 "Line": 10,
-                "Text": "eyes were, I asked myself how he had managed to see, and"
+                "Text": "eyes were, I asked myself how he had managed to see, and 2"
             } 
         ] 
     }
@@ -121,4 +125,13 @@ if (test2result.Results.length == 1) {
     console.log("FAIL: Test 2");
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test2result.Results.length);
+}
+
+const test3result = findSearchTermInBooks(2, twentyLeaguesIn);
+if (JSON.stringify(twentyLeaguesOut) === JSON.stringify(test1result)) {
+    console.log("PASS: Test 3");
+} else {
+    console.log("FAIL: Test 3");
+    console.log("Expected:", twentyLeaguesOut);
+    console.log("Received:", test3result);
 }
